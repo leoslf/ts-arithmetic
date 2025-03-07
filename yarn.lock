@@ -2,7 +2,12 @@
 # yarn lockfile v1
 
 
+api-extractor@^99.99.99:
+  version "99.99.99"
+  resolved "https://registry.npmjs.org/api-extractor/-/api-extractor-99.99.99.tgz"
+  integrity sha512-TQsQin3HleX8L15qyPw4J1CIHpo4cRAkDCNnXg5MIs87iN1dPXhNhmui+YTx8svMMDc/2hOSeJSy6rYLHnLEgw==
+
 typescript@^4.8.2:
   version "4.8.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.8.2.tgz#e3b33d5ccfb5914e4eeab6699cf208adee3fd790"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-4.8.2.tgz"
   integrity sha512-C0I1UsrrDHo2fYI5oaCGbSejwX4ch+9Y5jTQELvovfmFkK3HHSZJB8MSJcWLmCUBzQBchCrZ9rMRV6GuNrvGtw==

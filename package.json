@@ -33,6 +33,7 @@
     "postinstall": "npm run build"
   },
   "devDependencies": {
+    "api-extractor": "^99.99.99",
     "typescript": "^4.8.2"
   }
 }
