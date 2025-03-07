@@ -60,7 +60,7 @@ export declare type And<A extends Bit, B extends Bit> = AndMap[A][B];
 
 declare type AndMap = TwoBitMap<[0, 0, 0, 1]>;
 
-declare type ArrayOf<TLength extends number, TValue, A extends TValue[] = []> = (A['length'] extends TLength ? A : ArrayOf<TLength, TValue, [TValue, ...A]>);
+export declare type ArrayOf<TLength extends number, TValue, A extends TValue[] = []> = (A['length'] extends TLength ? A : ArrayOf<TLength, TValue, [TValue, ...A]>);
 
 /**
  * Used to represent true or false, but can be used to key into objects/tuples.
@@ -106,7 +106,7 @@ declare type CompareFloatMagnitudes<X extends UnsignedFloat, Y extends UnsignedF
 
 declare type CompareIntMagnitudes<X extends Digit[], Y extends Digit[]> = (NormaliseIntPartLengths<X, Y> extends DigitsPair<infer TNormalisedX, infer TNormalisedY> ? CompareMagnitudes<TNormalisedX, TNormalisedY> : never);
 
-declare type CompareLengths<A extends unknown[], B extends unknown[]> = (A['length'] extends B['length'] ? 0 : A['length'] extends 0 ? -1 : B['length'] extends 0 ? 1 : CompareLengths<Head<A>, Head<B>>);
+export declare type CompareLengths<A extends unknown[], B extends unknown[]> = (A['length'] extends B['length'] ? 0 : A['length'] extends 0 ? -1 : B['length'] extends 0 ? 1 : CompareLengths<Head<A>, Head<B>>);
 
 declare type CompareMagnitudes<TNormalisedX extends Digit[], TNormalisedY extends Digit[]> = (TNormalisedX extends TNormalisedY ? 0 : [TNormalisedX, TNormalisedY] extends [TailDigitArray<infer XFirst, infer XTail>, TailDigitArray<infer YFirst, infer YTail>] ? CompareDigits<XFirst, YFirst> extends 0 ? CompareMagnitudes<XTail, YTail> : CompareDigits<XFirst, YFirst> : never);
 
@@ -300,13 +300,13 @@ export declare type IsPositive<N extends number> = (N extends N ? number extends
 
 declare type IsUnsignedFloatEven<F extends UnsignedFloat> = (F[1] extends [] ? IsIntEven<F[0]> : never);
 
-declare type Join<A extends Stringable[], S extends string = ''> = (A extends [infer H extends Stringable, ...infer R extends Stringable[]] ? Join<R, `${S}${H}`> : S);
+export declare type Join<A extends Stringable[], S extends string = ''> = (A extends [infer H extends Stringable, ...infer R extends Stringable[]] ? Join<R, `${S}${H}`> : S);
 
-declare type Last<A extends unknown[]> = A extends [...unknown[], infer TLast] ? TLast : never;
+export declare type Last<A extends unknown[]> = A extends [...unknown[], infer TLast] ? TLast : never;
 
-declare type LeftPad<A extends unknown[], V, N extends number> = (A['length'] extends N ? A : LeftPad<[V, ...A], V, N>);
+export declare type LeftPad<A extends unknown[], V, N extends number> = (A['length'] extends N ? A : LeftPad<[V, ...A], V, N>);
 
-declare type LeftTrimTuple<A extends unknown[], T> = (A extends [infer H, ...infer R] ? [H] extends [T] ? LeftTrimTuple<R, T> : A : A);
+export declare type LeftTrimTuple<A extends unknown[], T> = (A extends [infer H, ...infer R] ? [H] extends [T] ? LeftTrimTuple<R, T> : A : A);
 
 declare type LongDivide<TDivisor extends Digit[], TNumeratorHead extends Digit[], TNumeratorTail extends Digit[], TQuotient extends Digit[] = [], TWithRemainder extends boolean = false> = (EuclideanDivide<TNumeratorHead, TDivisor> extends EuclideanDivideResult<infer TRemainder, infer TNextQuotientDigit> ? [...TQuotient, TNextQuotientDigit] extends infer TNextQuotient extends Digit[] ? TNumeratorTail extends TailDigitArray<infer TNextDigit, infer TNextTail> ? LongDivide<TDivisor, [...TRemainder, TNextDigit], TNextTail, TNextQuotient, TWithRemainder> : TWithRemainder extends false ? MakeUnsignedFloat<TNextQuotient, TRemainder extends [0] ? [] : LongDivideFraction<TDivisor, [...TRemainder, 0]>> : MakeModResult<TRemainder, TNextQuotient> : never : never);
 
@@ -451,7 +451,7 @@ declare type NormaliseIntPartLengths<X extends Digit[], Y extends Digit[]> = Nor
 
 declare type NormaliseIntZeros<X extends Digit[]> = (LeftTrimTuple<X, 0> extends infer TTrimmedX extends Digit[] ? TTrimmedX extends [] ? [0] : TTrimmedX : never);
 
-declare type NormaliseLengths<A extends unknown[], B extends unknown[], D extends PadDirection, TPadValue> = (CompareLengths<A, B> extends 0 | -1 ? [Pad<D, A, TPadValue, B['length']>, B] : [A, Pad<D, B, TPadValue, A['length']>]);
+export declare type NormaliseLengths<A extends unknown[], B extends unknown[], D extends PadDirection, TPadValue> = (CompareLengths<A, B> extends 0 | -1 ? [Pad<D, A, TPadValue, B['length']>, B] : [A, Pad<D, B, TPadValue, A['length']>]);
 
 /**
  * Perform an NOT operation on a Bit literals.
@@ -471,7 +471,7 @@ integerPart: I,
 fractionalPart: F
 ];
 
-declare type NumsUpto<N extends number, A extends number[] = []> = (A['length'] extends N ? Reject<A, never> : NumsUpto<N, [...A, A['length']]>);
+export declare type NumsUpto<N extends number, A extends number[] = []> = (A['length'] extends N ? Reject<A, never> : NumsUpto<N, [...A, A['length']]>);
 
 declare type OperationResult<C extends Digit = Digit, R extends Digit = Digit> = [carry: C, result: R];
 
@@ -492,7 +492,7 @@ declare type OrderedDigits = NumsUpto<10>;
 
 declare type OrMap = TwoBitMap<[0, 1, 1, 1]>;
 
-declare type Pad<D extends PadDirection, A extends unknown[], V, N extends number> = {
+export declare type Pad<D extends PadDirection, A extends unknown[], V, N extends number> = {
     'L': LeftPad<A, V, N>;
     'R': RightPad<A, V, N>;
 }[D];
@@ -514,9 +514,11 @@ declare type PowRejectingFractionalExponent<X extends number, N extends number> 
 
 declare type Reject<A extends unknown[], T> = (A extends [infer H, ...infer R] ? [H] extends [T] ? Reject<R, T> : [H, ...Reject<R, T>] : []);
 
-declare type RightPad<A extends unknown[], V, N extends number> = (A['length'] extends N ? A : RightPad<[...A, V], V, N>);
+export declare type RightPad<A extends unknown[], V, N extends number> = (A['length'] extends N ? A : RightPad<[...A, V], V, N>);
 
-declare type RightTrimTuple<A extends unknown[], T> = (A extends [...infer H, infer L] ? [L] extends [T] ? RightTrimTuple<H, T> : A : A);
+export declare type RightTrimTuple<A extends unknown[], T> = (A extends [...infer H, infer L] ? [L] extends [T] ? RightTrimTuple<H, T> : A : A);
+
+export declare type RightTruncateTo<A extends unknown[], N extends number> = (A['length'] extends N ? A : A extends [...infer H, infer T] ? RightTruncateTo<H, N> : []);
 
 declare type RotateLeftWithCarry<A> = (A extends [AdditiveOperationResult<any, infer R>, ...infer TTail] ? [...TTail, AdditiveOperationResult<1, R>] : never);
 
@@ -564,7 +566,7 @@ declare type SignStr<S extends Sign> = S extends '+' ? '' : S;
 
 declare type SmallEnoughForScientificNotation<TFractionalDigits extends Digit[]> = (TFractionalDigits extends [0, 0, 0, 0, 0, 0, ...Digit[]] ? 1 : 0);
 
-declare type SomeElementExtends<A extends unknown[], T> = (A extends [infer H, ...infer R] ? [H] extends [T] ? 1 : SomeElementExtends<R, T> : 0);
+export declare type SomeElementExtends<A extends unknown[], T> = (A extends [infer H, ...infer R] ? [H] extends [T] ? 1 : SomeElementExtends<R, T> : 0);
 
 declare type SplitAndNormalise<X extends number, Y extends number> = Normalise<ToSignedFloat<X>[1], ToSignedFloat<Y>[1]>;
 
@@ -572,9 +574,13 @@ declare type SplitIntAndFractionParts<S extends string | number> = (`${S}` exten
 
 declare type SplitIntoDigits<N extends string> = (N extends '' ? [] : N extends `${infer D extends Digit}${infer R}` ? R extends '' ? [D] : R extends `${number}` ? [D, ...SplitIntoDigits<R>] : never : never);
 
-declare type SplitLeadingElements<A extends unknown[], T, L extends unknown[] = []> = (A extends [infer H, ...infer R] ? [H] extends [T] ? SplitLeadingElements<R, T, [...L, H]> : [L, A] : [L, []]);
+export declare type SplitLeadingElements<A extends unknown[], T, L extends unknown[] = []> = (A extends [infer H, ...infer R] ? [H] extends [T] ? SplitLeadingElements<R, T, [...L, H]> : [L, A] : [L, []]);
 
-declare type Stringable = string | number | bigint | boolean | null | undefined;
+export declare type Stringable = string | number | bigint | boolean | null | undefined;
+
+export declare type StringOf<TLength extends number, V extends Stringable> = (_StringOf<TLength, V>);
+
+declare type _StringOf<TLength extends number, V extends Stringable, S extends string = '', TCounter extends never[] = []> = (TCounter['length'] extends TLength ? S : _StringOf<TLength, V, `${S}${V}`, [...TCounter, never]>);
 
 /**
  * Perform subtraction on two numeric type literals.
@@ -622,7 +628,7 @@ declare type ToSmallFractionString<TFractionalDigits extends Digit[]> = (SmallEn
 
 declare type ToUnsignedFloat<N extends number> = ToSignedFloat<N>[1];
 
-declare type Trim<S extends string, L extends string, R extends string> = ((L | R) extends '' ? S : '' extends (L | R) ? S extends `${L}${infer M}${R}` ? Trim<M, L, R> : S : never);
+export declare type Trim<S extends string, L extends string, R extends string> = ((L | R) extends '' ? S : '' extends (L | R) ? S extends `${L}${infer M}${R}` ? Trim<M, L, R> : S : never);
 
 declare type TrimLeadingZeros<S extends string> = EmptryStringAsZero<Trim<S, '0', ''>>;
 
