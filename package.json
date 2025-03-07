@@ -30,7 +30,7 @@
   "scripts": {
     "build": "tsc && api-extractor run --local --typescript-compiler-folder node_modules/typescript/lib",
     "tsc": "tsc",
-    "postinstall": "npm run tsc"
+    "postinstall": "tsc"
   },
   "devDependencies": {
     "typescript": "^4.8.2"
