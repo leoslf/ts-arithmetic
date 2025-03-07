@@ -166,6 +166,8 @@ TDecimalPlaces
 
 declare type EmptryStringAsZero<S extends string> = S extends '' ? '0' : S;
 
+declare type EmptyUpto<N extends number, A extends number[]> = (A['length'] extends N ? A : EmptyUpto<N, [...A, never]>);
+
 /**
  * Perform an equality comparison on two numeric type literals.
  *
@@ -232,7 +234,7 @@ export declare type GtOrEq<X extends number, Y extends number> = (CompareDecisio
     1: 1;
 }>);
 
-declare type Head<A extends unknown[]> = A extends [...infer THead, unknown] ? THead : never;
+export declare type Head<A extends unknown[]> = A extends [...infer THead, unknown] ? THead : never;
 
 export declare type HeadDigitArray<THead extends Digit[], TLast extends Digit> = [...THead, TLast];
 
@@ -492,6 +494,8 @@ sign: EmptryStringAsZero<I | F> extends '0' ? '+' : TSign,
 integerPart: I,
 fractionalPart: F
 ];
+
+export declare type NumsBetween<TFrom extends number, TTo extends number> = NumsUpto<TTo, EmptyUpto<TFrom, []>>;
 
 export declare type NumsUpto<N extends number, A extends number[] = []> = (A['length'] extends N ? Reject<A, never> : NumsUpto<N, [...A, A['length']]>);
 

@@ -2,9 +2,9 @@ import type { Stringable } from './String'
 
 export type Last<A extends unknown[]> = A extends [...unknown[], infer TLast] ? TLast : never
 
-type Head<A extends unknown[]> = A extends [...infer THead, unknown] ? THead : never
+export type Head<A extends unknown[]> = A extends [...infer THead, unknown] ? THead : never
 
-type NumsBetween<TFrom extends number, TTo extends number> = NumsUpto<TTo, EmptyUpto<TFrom, []>>
+export type NumsBetween<TFrom extends number, TTo extends number> = NumsUpto<TTo, EmptyUpto<TFrom, []>>
 
 type EmptyUpto<N extends number, A extends number[]> = (
     A['length'] extends N
