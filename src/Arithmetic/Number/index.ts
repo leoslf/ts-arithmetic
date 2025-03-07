@@ -1,4 +1,5 @@
 export type { Sign, SignDecisionBranch, FlipSign, MultiplySigns, Negate, IsPositive, IsNegative, IsSignPositive, IsSignNegative, Abs } from './Sign'
+export * from "./DecomposeNum";
 export type { SplitAndNormalise } from './SplitAndNormalise'
 export type { SignedFloatToNum, RoundFloat } from './ToNum'
 export type { Compare, _Compare, CompareMap, CompareDecisionBranch } from './Compare'
